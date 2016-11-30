@@ -57,6 +57,7 @@ __luaver_print_formatted()
 # Called whenever the execution should stop after any error occurs
 __luaver_exec_command()
 {
+    __luaver_print "EXEC ${1}"
     eval $1
 
     if [ ! $? -eq 0 ]
@@ -419,7 +420,7 @@ __luaver_install_lua()
 
     __luaver_print "Compiling ${lua_dir_name}"
 
-    __luaver_exec_command "make ${platform} install INSTALL_TOP=${__luaver_LUA_DIR}/${version}"
+    __luaver_exec_command "make ${platform} install INSTALL_TOP=${__luaver_LUA_DIR}/${version} MYCFLAGS=-I$HOME/usr/include MYLDFLAGS='-L$HOME/usr/lib -lncurses' MYLIBS='-L$HOME/usr/lib'"
 
     read -r -p "${lua_dir_name} successfully installed. Do you want to switch to this version? [Y/n]: " choice
     case $choice in

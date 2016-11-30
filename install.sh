@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROGRAM="luaver"
-SRC_URL="https://raw.githubusercontent.com/dhavalkapil/luaver/v1.0.0/${PROGRAM}"
+SRC_URL="https://raw.githubusercontent.com/trmwzm/luaver/master/${PROGRAM}"
 
 # Directories to be used
 LUAVER_DIR="${HOME}/.luaver"             # The luaver directory
@@ -54,11 +54,10 @@ install()
     cd $LUAVER_DIR
     if [ -e $PROGRAM ]
     then
-        print "Existing '${PROGRAM}' detected. Removing it..."
-        rm $PROGRAM
+        print "Existing ' ${LUAVER_DIR}/${PROGRAM}' detected. renaming '${PROGRAM}'.save and replacing."
+        mv $PROGRAM $PROGRAM.save
         print "Downloading fresh '${PROGRAM}'"
     fi
-        
     wget $SRC_URL
     chmod 775 $PROGRAM
 }
